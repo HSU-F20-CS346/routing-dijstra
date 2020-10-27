@@ -63,7 +63,7 @@ namespace RoutingDijkstra
                     if (knownPaths.ContainsKey(adjacentNode.Key) == false)
                     {
                         KeyValuePair<int, NetworkNode> next = new KeyValuePair<int, NetworkNode>(
-                        top.Key,
+                        top.Key + adjacentNode.Value,
                         _graph[adjacentNode.Key]
                         );
                         toVisit.Enqueue(next);
@@ -71,6 +71,22 @@ namespace RoutingDijkstra
                 }
             }
             return knownPaths[end.Name];
+        }
+
+        /// <summary>
+        /// generates a list of the shortest path between start and end
+        /// </summary>
+        /// <param name="start"></param>
+        /// <returns></returns>
+        public List<string> ListShortestPath(NetworkNode start, NetworkNode end)
+        {
+            //ugly
+            PriortyQueue<NetworkPath> toVisit = new PriortyQueue<NetworkPath>(new NetworkPathComparer());
+            Dictionary<string, int> knownPaths = new Dictionary<string, int>();
+
+
+            //TODO: rework previous algorithm
+            return new List<string>();
         }
 
 
